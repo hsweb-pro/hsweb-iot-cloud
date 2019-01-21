@@ -1,0 +1,51 @@
+[
+  {
+    "action": "door-lock",
+    "data": {
+      "device": "door-0001",
+      "status": "lock"
+    }
+  },
+  {
+    "action": "door-lock",
+    "data": {
+      "device": "door-0001",
+      "status": "unlock"
+    }
+  },
+  {
+    "action": "temperature",
+    "data": {
+      "device": "sensor-0001",
+      "value": 36
+    }
+  },
+  {
+    "action": "temperature",
+    "data": {
+      "device": "sensor-0001",
+      "value": 38
+    }
+  },
+  {
+    "action": "temperature",
+    "data": {
+      "device": "sensor-0002",
+      "value": 40
+    }
+  },
+  {
+    "action": "smoke-sensor",
+    "data": {
+      "device": "sensor-0002",
+      "conc": 0.1
+    }
+  },
+  {
+    "action": "smoke-sensor",
+    "data": {
+      "device": "sensor-0002",
+      "conc": 10
+    }
+  }
+]

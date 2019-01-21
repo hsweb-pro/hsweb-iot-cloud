@@ -1,0 +1,13 @@
+spring:
+  datasource:
+       type: com.alibaba.druid.pool.DruidDataSource
+       url: jdbc:mysql://localhost:3306/user_server?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+       username: root
+       password: hsweb-iot-cloud
+logging:
+  level:
+    org.hswebframework.web: DEBUG
+    org.hswebframework.web.cache: WARN
+    org.hswebframework.iot: DEBUG
+    org.apache.ibatis: DEBUG
+    org.mybatis: DEBUG

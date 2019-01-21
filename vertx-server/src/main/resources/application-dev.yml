@@ -1,0 +1,19 @@
+eureka-host: localhost
+eureka-port: 8761
+spring:
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      #默认使用h2数据库
+      url : jdbc:h2:file:./data/${spring.application.name}
+      username : sa
+      password :
+  rabbitmq:
+    addresses: localhost:5672
+#    username:
+#    password:
+logging:
+  level:
+    org.hswebframework.web: DEBUG
+    org.hswebframework.web.cache: WARN
+#    org.hswebframework.iot: warn
+    org.apache.kafka.clients: warn

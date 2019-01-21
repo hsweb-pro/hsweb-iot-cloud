@@ -1,0 +1,28 @@
+version: '2'
+services:
+  redis:
+    image: redis
+    ports:
+    - "6379:6379"
+  rabbit-mq:
+    image: rabbitmq:3-management
+    ports:
+    - "15672:15672"
+    - "5672:5672"
+    environment:
+      APPLICATION_SECRET: admin
+  user-mysql: # user 数据库
+    image: mysql:5.7
+    volumes:
+    - "user-database:/var/lib/mysql"
+    ports:
+      - 3306
+    restart: always
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+    environment:
+      MYSQL_ROOT_PASSWORD: hsweb-iot-cloud
+      MYSQL_DATABASE: user_server
+
+
+volumes:
+  user-database:
