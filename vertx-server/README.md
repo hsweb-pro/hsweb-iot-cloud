@@ -1,10 +1,10 @@
-# 物联网设备交互服务
+# 使用vertx进行物联网设备交互
 
 物联网设备接入服务,实现 mqtt,udp方式接入.数据传输格式全部采用json.
 
 # MQTT
 
-MQTT地址: tcp://{host}:{port:1884}. `clientId`,`username`,`password`在平台(device-server服务)注册分配
+MQTT地址: tcp://{host}:{port:1883}. `clientId`,`username`,`password`在平台(device-server服务)注册分配
 
 topic: mqtt服务仅有3个topic: `execute`,`reply`,`report`
 
