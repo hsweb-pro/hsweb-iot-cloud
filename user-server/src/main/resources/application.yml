@@ -48,7 +48,10 @@ hsweb:
           iot-cloud-user: offlineOther #异地登录模式,踢出其他地方登录的用户
     socket:
       max-text-message-buffer-size: 10485760
-
+    users:
+      gateway-user:
+        username: gateway-server
+        password: admin
 eureka:
   client:
     service-url:

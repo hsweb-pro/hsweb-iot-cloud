@@ -1,5 +1,6 @@
 package org.hswebframework.iot.interaction.vertx;
 
+import com.netflix.discovery.EurekaClient;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
@@ -19,6 +20,7 @@ import org.hswebframework.iot.interaction.vertx.cluster.RedisClusterManager;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,12 +51,6 @@ public class VertxServerConfiguration {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "vertx.mqtt")
-    public MqttServerOptions mqttServerOptions() {
-        return new MqttServerOptions();
-    }
-
-    @Bean
     @ConfigurationProperties(prefix = "vertx.mqtt.pfx")
     public MqttSslProperties mqttSslProperties() {
         return new MqttSslProperties();
@@ -73,13 +69,16 @@ public class VertxServerConfiguration {
         MqttServerOptions serverOptions = new MqttServerOptions();
         PfxOptions pfxOptions = new PfxOptions();
         pfxOptions.setPassword(sslProperties.getPassword());
+        serverOptions.setSsl(true).setPfxKeyCertOptions(pfxOptions);
         if (StringUtils.hasText(sslProperties.valueBase64)) {
             pfxOptions.setValue(Buffer.buffer(Base64.decodeBase64(sslProperties.valueBase64)));
-        } else {
+        } else if (StringUtils.hasText(sslProperties.path)) {
             pfxOptions.setPath(sslProperties.path);
+        } else {
+            serverOptions.setSsl(false);
         }
-        serverOptions.setSsl(true)
-                .setPfxKeyCertOptions(pfxOptions);
+
+
         return serverOptions;
     }
 
@@ -148,7 +147,7 @@ public class VertxServerConfiguration {
                     if (!e.succeeded()) {
                         log.error("deploy verticle :{} error", suplier, e.succeeded(), e.cause());
                     } else {
-                        log.debug("deploy verticle :{} success",suplier);
+                        log.debug("deploy verticle :{} success", suplier);
                     }
                 });
             }
@@ -159,11 +158,11 @@ public class VertxServerConfiguration {
     @Setter
     public static class MqttSslProperties {
 
-        private String path = "mqtt.pfx";
+        private String path;
 
         private String valueBase64;
 
-        private String password = "";
+        private String password;
 
     }
 }
