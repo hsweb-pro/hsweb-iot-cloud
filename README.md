@@ -68,9 +68,5 @@
 遇到问题? 可以加入QQ群:`515649185`,
 或者使用[issues](https://github.com/hsweb-pro/hsweb-iot-cloud/issues/new)提问.
 
-### QQ群
-
-`515649185`(备注:`hsweb-iot-cloud`).
-
 ### License
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
