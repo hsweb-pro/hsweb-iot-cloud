@@ -182,7 +182,7 @@ menus.forEach(function (menu) {
     autz_menu.push({
         id: org.hswebframework.web.id.IDGenerator.MD5.generate(),
         parentId: "-1",
-        menId: menu.id,
+        menuId: menu.id,
         status: 1,
         "settingId": autz_setting[0].id,
         "path": "-"
